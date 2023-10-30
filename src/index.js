@@ -1,5 +1,7 @@
 import { config } from 'dotenv-safe';
 
+import axios from 'axios';
+
 import logger from './services/logger';
 
 try {
