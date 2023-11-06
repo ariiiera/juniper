@@ -1,8 +1,8 @@
 import { config } from 'dotenv-safe';
 
-import axios from 'axios';
-
-import logger from './services/logger';
+import logger from './services/logger.js';
+import spotifyAuth from './auth/spotifyAuth.js';
+import spotifyPlaylist from './services/spotify.js';
 
 try {
   config({
@@ -12,3 +12,10 @@ try {
   logger.error('Error loading environment variables:', err);
   process.exit(1);
 }
+
+async function main() {
+  const accessToken = await spotifyAuth();
+  await spotifyPlaylist(accessToken, '37i9dQZF1DWX4NtIOfns5I');
+}
+
+main();
